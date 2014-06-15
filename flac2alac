@@ -24,13 +24,18 @@ main()
 		exit 1
 	fi
 
-	local infile="$1"
-	local outfile="${infile/%flac/m4a}"
-	local album_artist=$(metaflac --show-tag='ALBUM ARTIST' "$infile" | sed 's/ALBUM ARTIST=//g')
+	for file in *.flac
+	do
+	
+		local infile="$file"
+		local outfile="${infile/%flac/m4a}"
+		local album_artist=$(metaflac --show-tag='ALBUM ARTIST' "$infile" | sed 's/ALBUM ARTIST=//g')
 
-	echo "Converting $infile to $outfile ..."
-
-	ffmpeg -i "$infile" -acodec alac -metadata album_artist="$album_artist" "$outfile"
+		echo "Converting $infile to $outfile ..."
+	
+		ffmpeg -i "$infile" -acodec alac -metadata album_artist="$album_artist" "$outfile"
+	done
+	
 }
 
 main "$@"

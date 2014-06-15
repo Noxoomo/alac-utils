@@ -32,7 +32,7 @@ main()
 
 		echo "Converting $infile to $outfile ..."
 	
-		ffmpeg -i "$infile" -c:a libfdk_aac -b:a 300k -cutoff 1800 -metadata album_artist="$album_artist" "$outfile"
+		ffmpeg -i "$infile" -c:a libfdk_aac -vbr 5  -metadata album_artist="$album_artist" "$outfile"
 	done
 }
 

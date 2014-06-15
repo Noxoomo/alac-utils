@@ -48,7 +48,7 @@ fi
 #!/bin/sh
 echo "Converting $infile to $outfile ..."
 
-ffmpeg -v error -i "$infile" -c:a libfdk_aac -b:a 300k -cutoff 1800  \
+ffmpeg -v error -i "$infile" -c:a libfdk_aac -vbr 5   \
 -metadata title="$title" \
 -metadata artist="$artist" \
 -metadata album_artist="$album_artist" \
